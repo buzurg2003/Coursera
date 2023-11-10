@@ -1,0 +1,32 @@
+body {
+  background: black;
+  color: white;
+}
+
+a {
+  color: gray;
+  text-decoration: none;
+}
+
+a:hover {
+  color: black;
+  background: white;
+}
+
+.greenlink:hover {
+  color: green;
+  background: gray;
+}
+
+h1 {
+  font-family: monospace;
+  font-size: 24pt;
+}
+
+.indent {
+  margin-left: 10px;
+}
+
+.gap_below {
+  margin-bottom: 25px;
+}

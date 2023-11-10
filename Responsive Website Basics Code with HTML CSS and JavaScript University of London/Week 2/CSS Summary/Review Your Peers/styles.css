@@ -1,0 +1,17 @@
+/** This is a comment that the browser will ignore,
+* Put your CSS code into this file
+*/
+
+h1{
+    /* it will set text-color as green */
+    color: green;
+
+    /* It will set font-style in italic */
+    font-style: italic;
+
+    /* It will set the font to specified font-family */
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    
+    /* It will set font-size as 50px */
+    font-size: 50px;
+}

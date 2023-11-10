@@ -1,0 +1,13 @@
+/** This is a comment that the browser will ignore,
+* Put your CSS code into this file
+*/
+
+/** this is selector for h1  */
+h1 {
+  /** The "color" property changes h1 tag's color to orange */
+  color: orange;
+  /** The "background-color" property changes background-color's of h1 tag to red */
+  background-color: red;
+  /** The "font-size" property changes the text size of the h1 tag to 14pt */
+  font-size: 14pt;
+}

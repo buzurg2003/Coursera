@@ -1,0 +1,6 @@
+The provided JavaScript code demonstrates a simple implementation of night mode toggling using jQuery. Two buttons, '.js-go-night' and '.js-go-day', trigger the switch between night and day modes.
+
+When the '.js-go-night' button is clicked, the code adds a 'night' class to the 'body', 'div', and 'li' elements. This class likely contains CSS rules that define the night mode's styling, such as changing background colors and text colors to create a dark theme.
+
+Conversely, when the '.js-go-day' button is clicked, the 'night' class is removed from these elements, effectively reverting them to the default, or "day" mode, which is usually characterized by a light background with dark text.
+

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Upload Prototype</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 20px;
+        }
+
+        header {
+            font-size: 24px;
+            color: #007BFF;
+        }
+
+        canvas {
+            border: 1px solid #ccc;
+            max-width: 100%;
+        }
+
+        #imageInput {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <header>Image Upload Prototype</header>
+    <input type="file" id="imageInput" accept="image/*" onchange="upload()">
+    <canvas id="canvas"></canvas>
+
+    <script src="https://www.dukelearntoprogram.com/course1/common/js/image/SimpleImage.js"></script>
+    <script>
+        function upload() {
+            const input = document.getElementById("imageInput");
+            const canvas = document.getElementById("canvas");
+
+            if (input.files.length === 0) {
+                alert("Please select an image file.");
+                return;
+            }
+
+            const file = input.files[0];
+
+            // Check if the selected file is an image
+            if (!file.type.startsWith("image/")) {
+                alert("Please select a valid image file.");
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const img = new SimpleImage(file);
+                const context = canvas.getContext("2d");
+
+                // Set canvas dimensions
+                canvas.width = img.getWidth();
+                canvas.height = img.getHeight();
+
+                // Clear canvas
+                context.clearRect(0, 0, canvas.width, canvas.height);
+
+                // Draw the image on the canvas
+                context.drawImage(img, 0, 0, canvas.width, canvas.height);
+            };
+
+            reader.readAsDataURL(file);
+        }
+    </script>
+</body>
+</html>

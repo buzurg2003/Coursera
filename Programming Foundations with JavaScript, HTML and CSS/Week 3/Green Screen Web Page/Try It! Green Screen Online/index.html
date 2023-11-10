@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Green Screen Effect</title>
+    <style media="screen">
+        canvas {
+            height: 200px;
+            border: 1px solid lightgrey;
+            float: left;
+        }
+
+        #backgroundCanvas {
+            float: left;
+        }
+
+        input {
+            font-size: 14pt;
+        }
+    </style>
+</head>
+<body>
+    <header>Green Screen Effect</header>
+    <canvas id="foregroundCanvas"></canvas>
+    <canvas id="backgroundCanvas"></canvas>
+    <p>
+        Foreground Image:
+        <input type="file" multiple="false" accept="image/*" id="fgInput" onchange="uploadForeground()">
+        Background Image:
+        <input type="file" multiple="false" accept="image/*" id="bgInput" onchange="uploadBackground()">
+    </p>
+    <button onclick="doGreenScreen()">Create Composite</button>
+    <script>
+        var fgImage = null;
+        var bgImage = null;
+        var fgCanvas = document.getElementById("foregroundCanvas");
+        var bgCanvas = document.getElementById("backgroundCanvas");
+
+        function uploadForeground() {
+            var fgFileInput = document.getElementById("fgInput");
+            fgImage = new SimpleImage(fgFileInput);
+            fgImage.drawTo(fgCanvas);
+        }
+
+        function uploadBackground() {
+            var bgFileInput = document.getElementById("bgInput");
+            bgImage = new SimpleImage(bgFileInput);
+            bgImage.drawTo(bgCanvas);
+        }
+
+        function clearCanvas() {
+            fgCanvas.getContext("2d").clearRect(0, 0, fgCanvas.width, fgCanvas.height);
+            bgCanvas.getContext("2d").clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+        }
+
+        function doGreenScreen() {
+            if (fgImage == null || !fgImage.complete()) {
+                alert("Foreground image has not been loaded.");
+                return;
+            }
+
+            if (bgImage == null || !bgImage.complete()) {
+                alert("Background image has not been loaded.");
+                return;
+            }
+
+            clearCanvas();
+
+            var threshold = 240; // Adjust as needed
+            var finalImage = new SimpleImage(fgImage.getWidth(), fgImage.getHeight());
+
+            for (var pixel of fgImage.values()) {
+                var x = pixel.getX();
+                var y = pixel.getY();
+                if (pixel.getGreen() > threshold) {
+                    finalImage.setPixel(x, y, bgImage.getPixel(x, y));
+                } else {
+                    finalImage.setPixel(x, y, pixel);
+                }
+            }
+
+            finalImage.drawTo(bgCanvas);
+        }
+    </script>
+    <script src="https://www.dukelearntoprogram.com/course1/common/js/image/SimpleImage.js"></script>
+</body>
+</html>

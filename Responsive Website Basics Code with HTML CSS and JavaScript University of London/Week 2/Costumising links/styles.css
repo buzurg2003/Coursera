@@ -1,0 +1,19 @@
+body {
+  background: black;
+  color: white;
+}
+
+a {
+  color: gray;
+  text-decoration: none;
+}
+
+a:hover {
+  color: black;
+  background: white;
+}
+
+h1 {
+  font-family: monospace;
+  font-size: 24pt;
+}
